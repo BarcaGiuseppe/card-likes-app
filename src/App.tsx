@@ -8,13 +8,13 @@ import CardBoxComponent from "./components/CardBoxComponent";
 export type ChangeRootFunction = (root: string) => void;
 
 function App() {
-  const [root, setRoot] = useState<string>("Home");
+  const [root, setRoot] = useState<string>(" Home");
   const handleChangeRoot = (root: string): void => {
     setRoot(root);
   };
   return (
     <>
-      {root === "Home" ? (
+      {root === " Home" ? (
         <>
           <NavComponent changeRoot={handleChangeRoot}></NavComponent>
           <HomeComponent></HomeComponent>

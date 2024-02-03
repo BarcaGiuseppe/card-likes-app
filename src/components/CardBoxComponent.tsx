@@ -1,7 +1,9 @@
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
-import { utilityGetCards, utilityGetLikesCards } from "../utility";
+import { utiliyGetDataCardFromLS } from "../utility";
+import { useState } from "react";
+import { Icard } from "../interfaces/Icard";
 
 const CardContainer = styled.div(() => ({
   display: "flex",
@@ -44,9 +46,12 @@ const HeartButton = styled.button<{ isLike: boolean }>((props) => ({
 const CardBoxComponent: React.FC<{ isLikes: boolean }> = ({
   isLikes,
 }): JSX.Element => {
+  const [dataCard, setDataCard] = useState<Icard[]>(
+    utiliyGetDataCardFromLS() !== null ? utiliyGetDataCardFromLS()! : []
+  );
   console.log("isLike" + isLikes);
   //const dataCard = isLikes ? utilityGetLikesCards() : utilityGetCards();
-  const dataCard = utilityGetCards();
+  //const dataCard = utilityGetCards();
   console.log(dataCard.length);
   return isLikes ? (
     <CardContainer>

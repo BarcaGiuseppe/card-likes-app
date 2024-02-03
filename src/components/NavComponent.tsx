@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { ChangeRootFunction } from "../App";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faHome } from "@fortawesome/free-solid-svg-icons";
 
 const NavContainer = styled.div(() => ({
   display: "flex",
   justifyContent: "space-around",
   alignItems: "end",
-  backgroundColor: "#D2B48C",
+  backgroundColor: "whitesmoke",
 }));
 
 const NavItem = styled.div(() => ({
@@ -15,12 +17,11 @@ const NavItem = styled.div(() => ({
 }));
 
 const Item = styled.h3(() => ({
-  background: "#717D7E",
-  color: "white",
+  color: "black",
+  cursor: "pointer",
   fontSize: "1em",
   margin: "1em",
   padding: "0.25em 1em",
-  border: "2px solid black",
 }));
 const NavComponent: React.FC<{ changeRoot: ChangeRootFunction }> = ({
   changeRoot,
@@ -33,8 +34,12 @@ const NavComponent: React.FC<{ changeRoot: ChangeRootFunction }> = ({
   return (
     <NavContainer>
       <NavItem>
-        <Item onClick={handleOnClick}>Home</Item>
-        <Item onClick={handleOnClick}>Likes</Item>
+        <Item onClick={handleOnClick}>
+          <FontAwesomeIcon icon={faHome} /> Home
+        </Item>
+        <Item onClick={handleOnClick}>
+          <FontAwesomeIcon icon={faHeart} /> Likes
+        </Item>
       </NavItem>
     </NavContainer>
   );

@@ -15,7 +15,7 @@ const FormContainer = styled.div(() => ({
 const InputTxt = styled.input(() => ({
   border: "1px solid black",
   borderRadius: "8px",
-  backgroundColor: "whitesmoke",
+  backgroundColor: "white",
   color: "white",
   width: "500px",
   height: "50px",
@@ -26,7 +26,7 @@ const InputTxt = styled.input(() => ({
 const InputUrl = styled.input(() => ({
   border: "1px solid black",
   borderRadius: "8px",
-  backgroundColor: "whitesmoke",
+  backgroundColor: "white",
   color: "white",
   width: "350px",
   height: "50px",
@@ -48,9 +48,9 @@ const FormComponent = (): JSX.Element => {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <FormContainer>
-        <InputTxt></InputTxt>
+        <InputTxt placeholder="Insert Title"></InputTxt>
         <div>
-          <InputUrl></InputUrl>
+          <InputUrl placeholder="Insert Url"></InputUrl>
           <ButtonInput>Aggiungi</ButtonInput>
         </div>
       </FormContainer>
