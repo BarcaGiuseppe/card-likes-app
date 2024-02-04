@@ -1,7 +1,11 @@
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
-import { utiliyGetDataCardFromLS } from "../utility";
+import {
+  utilityChangeDataCardLike,
+  utilityAddDataCardToLS,
+  utiliyGetDataCardFromLS,
+} from "../utility";
 import { useState } from "react";
 import { Icard } from "../interfaces/Icard";
 
@@ -19,6 +23,7 @@ const Card = styled.div(() => ({
   justifyContent: "space-around",
   margin: "10px",
   maxWidth: "300px",
+  boxShadow: "2px 2px 10px 2px rgba(0, 0, 0, 0.3)",
 }));
 
 const Img = styled.img(() => ({ borderRadius: "8px", maxWidth: "100%" }));
@@ -49,6 +54,11 @@ const CardBoxComponent: React.FC<{ isLikes: boolean }> = ({
   const [dataCard, setDataCard] = useState<Icard[]>(
     utiliyGetDataCardFromLS() !== null ? utiliyGetDataCardFromLS()! : []
   );
+  const handleClickHeart = (id: number): void => {
+    console.log("handleClickHeart:" + id);
+    utilityChangeDataCardLike(id);
+    setDataCard(utiliyGetDataCardFromLS()!);
+  };
   console.log("isLike" + isLikes);
   //const dataCard = isLikes ? utilityGetLikesCards() : utilityGetCards();
   //const dataCard = utilityGetCards();
@@ -58,11 +68,14 @@ const CardBoxComponent: React.FC<{ isLikes: boolean }> = ({
       {dataCard.map(
         (elem) =>
           elem.isLike && (
-            <Card>
+            <Card key={elem.id}>
               <Img src={elem.url} alt={elem.title}></Img>
               <TitleContainer>
                 <Title>{elem.title}</Title>
-                <HeartButton isLike={elem.isLike}>
+                <HeartButton
+                  onClick={() => handleClickHeart(elem.id)}
+                  isLike={elem.isLike}
+                >
                   <FontAwesomeIcon icon={faHeart} />
                 </HeartButton>
               </TitleContainer>
@@ -73,11 +86,14 @@ const CardBoxComponent: React.FC<{ isLikes: boolean }> = ({
   ) : (
     <CardContainer>
       {dataCard.map((elem) => (
-        <Card>
+        <Card key={elem.id}>
           <Img src={elem.url} alt={elem.title}></Img>
           <TitleContainer>
             <Title>{elem.title}</Title>
-            <HeartButton isLike={elem.isLike}>
+            <HeartButton
+              onClick={() => handleClickHeart(elem.id)}
+              isLike={elem.isLike}
+            >
               <FontAwesomeIcon icon={faHeart} />
             </HeartButton>
           </TitleContainer>

@@ -3,12 +3,15 @@ import styled from "styled-components";
 const FormContainer = styled.div(() => ({
   display: "flex",
   flexDirection: "column",
-  backgroundColor: "#f5f5f5",
-  margin: "10px",
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: "#4590e6",
   maxWidth: "600px",
+  width: "600px",
+  margin: "10px",
   border: "2px black",
   borderRadius: "8px",
-  boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+  boxShadow: "2px 2px 10px 2px rgba(0, 0, 0, 0.3)",
   padding: "20px",
 }));
 
@@ -16,8 +19,7 @@ const InputTxt = styled.input(() => ({
   border: "1px solid black",
   borderRadius: "8px",
   backgroundColor: "white",
-  color: "white",
-  width: "500px",
+  width: "100%",
   height: "50px",
   fontSize: "16px",
   margin: "10px",
@@ -27,10 +29,9 @@ const InputUrl = styled.input(() => ({
   border: "1px solid black",
   borderRadius: "8px",
   backgroundColor: "white",
-  color: "white",
-  width: "350px",
+  width: "100%",
   height: "50px",
-  fontSize: "16px",
+  fontSize: "12px",
   margin: "10px",
 }));
 
@@ -49,10 +50,8 @@ const FormComponent = (): JSX.Element => {
     <div style={{ display: "flex", justifyContent: "center" }}>
       <FormContainer>
         <InputTxt placeholder="Insert Title"></InputTxt>
-        <div>
-          <InputUrl placeholder="Insert Url"></InputUrl>
-          <ButtonInput>Aggiungi</ButtonInput>
-        </div>
+        <InputUrl placeholder="Insert Url"></InputUrl>
+        <ButtonInput>Aggiungi</ButtonInput>
       </FormContainer>
     </div>
   );

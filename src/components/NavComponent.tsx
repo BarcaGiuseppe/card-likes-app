@@ -8,12 +8,13 @@ const NavContainer = styled.div(() => ({
   justifyContent: "space-around",
   alignItems: "end",
   backgroundColor: "whitesmoke",
+  boxShadow: "0 1px 3px 1px rgba(0, 0, 0, 0.3)",
 }));
 
 const NavItem = styled.div(() => ({
   display: "flex",
   gap: "10px",
-  marginLeft: "auto", // Spinge il contenitore dei pulsanti verso la fine del NavContainer
+  marginLeft: "auto",
 }));
 
 const Item = styled.h3(() => ({

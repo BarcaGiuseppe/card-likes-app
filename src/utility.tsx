@@ -3,6 +3,7 @@ import { Icard } from "./interfaces/Icard";
 // export const utilityGetCards = (): Array<Icard> => {
 //   return [
 //     {
+
 //       url: "https://miro.medium.com/v2/resize:fit:1200/1*y6C4nSvy2Woe0m7bWEn4BA.png",
 //       title: "REACT JS",
 //       isLike: false,
@@ -48,4 +49,22 @@ export const utilityAddDataCardToLS = ({
     isLike: isLike,
   };
   const newDataCardList = data.concat(newCard);
+  localStorage.setItem("dataCard", JSON.stringify(newDataCardList));
+};
+
+export const utilityChangeDataCardLike = (idCard: number): void => {
+  console.log(idCard);
+  const data =
+    utiliyGetDataCardFromLS() !== null
+      ? Array.from(utiliyGetDataCardFromLS()!)
+      : [];
+
+  const newDataCardList = data.map(({ isLike, id, ...elem }) => {
+    if (id === idCard) {
+      console.log("@@@@@@@@@@@@@@@@@ò" + id);
+      return { ...elem, isLike: !isLike, id: id };
+    }
+    return { ...elem, isLike: isLike, id: id };
+  });
+  localStorage.setItem("dataCard", JSON.stringify(newDataCardList));
 };
