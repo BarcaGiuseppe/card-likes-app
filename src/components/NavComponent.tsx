@@ -7,7 +7,7 @@ const NavContainer = styled.div(() => ({
   display: "flex",
   justifyContent: "space-around",
   alignItems: "end",
-  backgroundColor: "whitesmoke",
+  backgroundColor: "#d1d1d1",
   boxShadow: "0 1px 3px 1px rgba(0, 0, 0, 0.3)",
 }));
 
@@ -18,7 +18,6 @@ const NavItem = styled.div(() => ({
 }));
 
 const Item = styled.h3(() => ({
-  color: "black",
   cursor: "pointer",
   fontSize: "1em",
   margin: "1em",
@@ -29,7 +28,6 @@ const NavComponent: React.FC<{ changeRoot: ChangeRootFunction }> = ({
 }): JSX.Element => {
   const handleOnClick = (event: React.MouseEvent<HTMLHeadingElement>): void => {
     const target = event.target as HTMLInputElement;
-    console.log(target.innerText);
     changeRoot(target.innerText);
   };
   return (
@@ -39,7 +37,7 @@ const NavComponent: React.FC<{ changeRoot: ChangeRootFunction }> = ({
           <FontAwesomeIcon icon={faHome} /> Home
         </Item>
         <Item onClick={handleOnClick}>
-          <FontAwesomeIcon icon={faHeart} /> Likes
+          <FontAwesomeIcon icon={faHeart} color="red" /> Likes
         </Item>
       </NavItem>
     </NavContainer>

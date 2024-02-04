@@ -4,6 +4,7 @@ import "./App.css";
 import HomeComponent from "./components/HomeComponent";
 import NavComponent from "./components/NavComponent";
 import CardBoxComponent from "./components/CardBoxComponent";
+import { utiliyGetDataCardFromLS } from "./utility";
 
 export type ChangeRootFunction = (root: string) => void;
 
@@ -12,6 +13,9 @@ function App() {
   const handleChangeRoot = (root: string): void => {
     setRoot(root);
   };
+  const dataCard =
+    utiliyGetDataCardFromLS() !== null ? utiliyGetDataCardFromLS()! : [];
+
   return (
     <>
       {root === " Home" ? (
@@ -22,7 +26,7 @@ function App() {
       ) : (
         <>
           <NavComponent changeRoot={handleChangeRoot}></NavComponent>
-          <CardBoxComponent isLikes={true}></CardBoxComponent>
+          <CardBoxComponent isLikes={true} dataC={dataCard}></CardBoxComponent>
         </>
       )}
     </>

@@ -4,15 +4,14 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import NavComponent from "./NavComponent";
 import FormComponent from "./FormComponent";
 import CardBoxComponent from "./CardBoxComponent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { utiliyGetDataCardFromLS } from "../utility";
 
 const HomeContainer = styled.div(() => ({
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
 }));
-
-interface ButtonProps {}
 
 const ButtonLikes = styled.button(() => ({
   background: "#717D7E",
@@ -24,11 +23,19 @@ const ButtonLikes = styled.button(() => ({
 }));
 
 const HomeComponent = (): JSX.Element => {
+  const [isSub, setIsSub] = useState<boolean>(false);
+  const dataCard =
+    utiliyGetDataCardFromLS() !== null ? utiliyGetDataCardFromLS()! : [];
+
+  const handleSubmitForm = (): void => {
+    setIsSub(!isSub);
+  };
+  useEffect(() => {}, [isSub]);
   return (
     <>
       <HomeContainer>
-        <FormComponent></FormComponent>
-        <CardBoxComponent isLikes={false}></CardBoxComponent>
+        <FormComponent submit={handleSubmitForm}></FormComponent>
+        <CardBoxComponent isLikes={false} dataC={dataCard}></CardBoxComponent>
       </HomeContainer>
     </>
   );

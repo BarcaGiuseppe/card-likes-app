@@ -6,7 +6,7 @@ import {
   utilityAddDataCardToLS,
   utiliyGetDataCardFromLS,
 } from "../utility";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Icard } from "../interfaces/Icard";
 
 const CardContainer = styled.div(() => ({
@@ -63,21 +63,19 @@ const Description = styled.p(() => ({
   fontSize: "medium",
 }));
 
-const CardBoxComponent: React.FC<{ isLikes: boolean }> = ({
+const CardBoxComponent: React.FC<{ isLikes: boolean; dataC: Array<Icard> }> = ({
   isLikes,
+  dataC,
 }): JSX.Element => {
-  const [dataCard, setDataCard] = useState<Icard[]>(
-    utiliyGetDataCardFromLS() !== null ? utiliyGetDataCardFromLS()! : []
-  );
+  const [dataCard, setDataCard] = useState<Icard[]>(dataC);
+
+  useEffect(() => {
+    setDataCard(dataC);
+  }, [dataC]);
   const handleClickHeart = (id: number): void => {
-    console.log("handleClickHeart:" + id);
     utilityChangeDataCardLike(id);
     setDataCard(utiliyGetDataCardFromLS()!);
   };
-  console.log("isLike" + isLikes);
-  //const dataCard = isLikes ? utilityGetLikesCards() : utilityGetCards();
-  //const dataCard = utilityGetCards();
-  console.log(dataCard.length);
   return isLikes ? (
     <CardContainer>
       {dataCard.map(
