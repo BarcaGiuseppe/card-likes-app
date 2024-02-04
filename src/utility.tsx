@@ -33,10 +33,12 @@ export const utilityAddDataCardToLS = ({
   url,
   title,
   isLike,
+  description,
 }: {
   url: string;
   title: string;
   isLike: boolean;
+  description: string;
 }): void => {
   const data =
     utiliyGetDataCardFromLS() !== null
@@ -47,6 +49,7 @@ export const utilityAddDataCardToLS = ({
     url: url,
     title: title,
     isLike: isLike,
+    description: description,
   };
   const newDataCardList = data.concat(newCard);
   localStorage.setItem("dataCard", JSON.stringify(newDataCardList));

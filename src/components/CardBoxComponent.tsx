@@ -24,9 +24,15 @@ const Card = styled.div(() => ({
   margin: "10px",
   maxWidth: "300px",
   boxShadow: "2px 2px 10px 2px rgba(0, 0, 0, 0.3)",
+  overflow: "hidden",
 }));
 
-const Img = styled.img(() => ({ borderRadius: "8px", maxWidth: "100%" }));
+const Img = styled.img(() => ({
+  borderTopLeftRadius: "8px",
+  borderTopRightRadius: "8px",
+  maxWidth: "100%",
+  objectFit: "cover",
+}));
 
 const TitleContainer = styled.div(() => ({
   display: "flex",
@@ -35,6 +41,7 @@ const TitleContainer = styled.div(() => ({
 const Title = styled.h2(() => ({
   textAlign: "center",
   margin: "10px",
+  marginLeft: "20px",
 }));
 
 const HeartButton = styled.button<{ isLike: boolean }>((props) => ({
@@ -46,6 +53,14 @@ const HeartButton = styled.button<{ isLike: boolean }>((props) => ({
   color: props.isLike ? "red" : "",
   outline: "none",
   margin: "10px",
+  marginRight: "20px",
+}));
+
+const Description = styled.p(() => ({
+  textAlign: "center",
+  margin: "10px",
+  marginBottom: "20px",
+  fontSize: "medium",
 }));
 
 const CardBoxComponent: React.FC<{ isLikes: boolean }> = ({
@@ -79,6 +94,7 @@ const CardBoxComponent: React.FC<{ isLikes: boolean }> = ({
                   <FontAwesomeIcon icon={faHeart} />
                 </HeartButton>
               </TitleContainer>
+              <Description>{elem.description}</Description>
             </Card>
           )
       )}
@@ -97,6 +113,7 @@ const CardBoxComponent: React.FC<{ isLikes: boolean }> = ({
               <FontAwesomeIcon icon={faHeart} />
             </HeartButton>
           </TitleContainer>
+          <Description>{elem.description}</Description>
         </Card>
       ))}
     </CardContainer>
